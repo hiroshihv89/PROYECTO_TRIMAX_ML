@@ -1,0 +1,37 @@
+PASOS PARA SUBIR PROYECTO A GITHUB
+====================================
+
+1. INSTALAR GIT (si no lo tienes):
+   - Descarga desde: https://git-scm.com/download/win
+   - Instala con opciones por defecto
+
+2. ABRIR TERMINAL en la carpeta del proyecto (trimax_api)
+
+3. INICIALIZAR REPOSITORIO (si no existe):
+   git init
+
+4. CONFIGURAR GIT (solo primera vez):
+   git config --global user.name "hiroshihv89"
+   git config --global user.email "hiroshihv89@gmail.com"
+
+5. CONECTAR CON TU REPOSITORIO:
+   git remote add origin https://github.com/hiroshihv89/PROYECTO_TRIMAX_ML.git
+
+6. ELIMINAR ARCHIVO COLAB (desde terminal):
+   git rm modelo_trimax.ipynb
+   git commit -m "Eliminar archivo Colab"
+   git push origin main
+
+7. AGREGAR TODOS LOS ARCHIVOS DEL PROYECTO:
+   git add .
+
+8. HACER COMMIT:
+   git commit -m "Subir proyecto TRIMAX API completo"
+
+9. SUBIR A GITHUB:
+   git push origin main
+
+NOTA: Si la rama se llama "master" en vez de "main", usa:
+   git push origin master
+
+

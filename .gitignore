@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+*.spec
+
+# Logs
+*.log
+logs/
+api.log
+
+# Resultados
+results/
+*.pkl
+*.zip
+
+# Uploads temporales
+uploads/*.xlsx
+uploads/*.csv
+!uploads/20251126_121106_TrazabilidadDeOrdenes_transformado2.xlsx
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup
+TRIMAX_API_BACKUP_*/
+
+# Railway
+.railway/
+
