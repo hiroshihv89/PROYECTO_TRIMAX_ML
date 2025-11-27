@@ -23,9 +23,8 @@ Sistema web completo para predecir retrasos en órdenes de fabricación utilizan
 - **Uvicorn**: Servidor ASGI
 
 ### Frontend
+- **React**: Framework frontend completo (via CDN)
 - **HTML5/CSS3**: Estructura y estilos
-- **JavaScript**: Lógica del cliente
-- **React**: Componente de estadísticas de archivos (via CDN)
 - **Chart.js**: Gráficos interactivos
 - **Google Fonts**: Tipografías (Orbitron, Rajdhani)
 
@@ -153,7 +152,7 @@ El proyecto está desplegado en Render.com:
 
 ## 📄 Licencia
 
-Este proyecto fue desarrollado como parte de un trabajo académico.
+Este proyecto fue desarrollado como parte de un trabajo académico de SENATI.
 
 ---
 
@@ -171,4 +170,3 @@ Este proyecto fue desarrollado como parte de un trabajo académico.
 **Instructor:**
 
 - MORALES CARLOS, ALDO OMAR
-
