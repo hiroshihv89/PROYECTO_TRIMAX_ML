@@ -219,6 +219,9 @@ async def analyze_file(file: UploadFile = File(...)):
                 try:
                     df['FECHA_INICIO'] = pd.to_datetime(df['FECHA_INICIO'], errors='coerce')
                     fechas_validas = df['FECHA_INICIO'].dropna()
+                    # Filtrar fechas razonables (desde 2000 en adelante)
+                    fecha_limite = pd.Timestamp('2000-01-01')
+                    fechas_validas = fechas_validas[fechas_validas >= fecha_limite]
                     if len(fechas_validas) > 0:
                         stats["fecha_minima"] = fechas_validas.min().strftime("%Y-%m-%d")
                         stats["fecha_maxima"] = fechas_validas.max().strftime("%Y-%m-%d")
