@@ -37,7 +37,6 @@
         overflow-x: hidden;
     }
 
-    /* Animated Background */
     .bg-animation {
         position: fixed;
         top: 0;
@@ -70,14 +69,12 @@
         100% { transform: translate(50px, 50px); }
     }
 
-    /* Container */
     .container {
         max-width: 1400px;
         margin: 0 auto;
         padding: 30px;
     }
 
-    /* Header */
     .header {
         text-align: center;
         padding: 40px 0;
@@ -130,7 +127,6 @@
         text-transform: uppercase;
     }
 
-    /* Connection Status */
     .connection-badge {
         position: fixed;
         top: 20px;
@@ -163,12 +159,6 @@
         box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
     }
 
-    #btnLogout:hover {
-        background: var(--accent-red);
-        color: white;
-        transform: scale(1.05);
-    }
-
     .status-dot {
         width: 10px;
         height: 10px;
@@ -184,7 +174,6 @@
         50% { opacity: 0.4; }
     }
 
-    /* Cards */
     .card {
         background: var(--bg-card);
         border: 1px solid var(--border-color);
@@ -199,7 +188,6 @@
         box-shadow: var(--glow-cyan);
     }
 
-    /* Upload Area */
     .upload-section {
         margin-bottom: 30px;
     }
@@ -286,7 +274,6 @@
         color: var(--accent-cyan);
     }
 
-    /* File Info */
     .file-info {
         display: flex;
         align-items: center;
@@ -342,7 +329,6 @@
         color: white;
     }
 
-    /* Button */
     .btn-primary {
         padding: 18px 50px;
         font-family: 'Orbitron', sans-serif;
@@ -392,7 +378,6 @@
         margin: 40px 0;
     }
 
-    /* Progress Section */
     .progress-section {
         margin: 30px 0;
     }
@@ -454,7 +439,6 @@
         color: var(--accent-cyan);
     }
 
-    /* Results Section */
     .results-section {
         margin-top: 40px;
     }
@@ -478,7 +462,6 @@
         margin-bottom: 20px;
     }
 
-    /* Metrics Grid */
     .metrics-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -530,7 +513,6 @@
         letter-spacing: 2px;
     }
 
-    /* Two Column Layout */
     .results-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -551,7 +533,6 @@
         color: var(--accent-cyan);
     }
 
-    /* Features List */
     .features-list {
         max-height: 400px;
         overflow-y: auto;
@@ -597,7 +578,6 @@
         text-align: right;
     }
 
-    /* Recommendations */
     .recommendation-item {
         padding: 20px;
         background: rgba(0, 245, 255, 0.05);
@@ -630,14 +610,63 @@
         color: var(--accent-orange);
     }
 
-    /* Chart Container */
+    .stats-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    .stats-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 18px;
+        color: var(--accent-cyan);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .stat-item {
+        background: rgba(0, 245, 255, 0.05);
+        border-left: 3px solid var(--accent-cyan);
+        padding: 12px;
+        border-radius: 6px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-bottom: 5px;
+    }
+
+    .stat-value {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--accent-cyan);
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .stat-columns {
+        margin-top: 10px;
+        font-size: 12px;
+        color: var(--text-secondary);
+    }
+
     .chart-container {
         position: relative;
         height: 300px;
         margin-top: 20px;
     }
 
-    /* Scrollbar */
     ::-webkit-scrollbar {
         width: 6px;
     }
@@ -651,7 +680,6 @@
         border-radius: 3px;
     }
 
-    /* Alerts */
     .alert {
         padding: 15px 20px;
         border-radius: 12px;
@@ -673,12 +701,10 @@
         color: var(--accent-green);
     }
 
-    /* Hidden */
     .hidden {
         display: none !important;
     }
 
-    /* Login Modal */
     .login-modal {
         position: fixed;
         top: 0;
@@ -708,7 +734,6 @@
         display: none;
     }
 
-    /* Loading Spinner */
     .spinner {
         width: 20px;
         height: 20px;
@@ -724,7 +749,6 @@
         to { transform: rotate(360deg); }
     }
 
-    /* Responsive */
     @media (max-width: 1024px) {
         .metrics-grid {
             grid-template-columns: 1fr;
@@ -749,599 +773,697 @@
 <div class="bg-animation"></div>
 <div class="grid-overlay"></div>
 
-<!-- Login Modal -->
-<div id="loginModal" class="login-modal">
-    <div class="login-card">
-        <div class="logo-container" style="margin-bottom: 30px;">
-            <div class="logo-icon"><img src="img/logo.png" alt="TRIMAX" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></div>
-            <h1 class="logo-text" style="font-size: 36px;">TRIMAX AI</h1>
-        </div>
-        <h2 style="text-align: center; margin-bottom: 30px; font-family: 'Orbitron', sans-serif;">Iniciar Sesión</h2>
-        <form id="loginForm">
-            <input type="text" id="username" placeholder="Usuario" required style="width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: 1px solid var(--border-color); background: rgba(18, 18, 26, 0.8); color: var(--text-primary); font-size: 16px;">
-            <input type="password" id="password" placeholder="Contraseña" required style="width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: 1px solid var(--border-color); background: rgba(18, 18, 26, 0.8); color: var(--text-primary); font-size: 16px;">
-            <button type="submit" class="btn-primary" style="width: 100%;">Ingresar</button>
-        </form>
-        <div id="loginError" style="color: var(--accent-red); margin-top: 15px; text-align: center; display: none;"></div>
-    </div>
-</div>
-
-<!-- Connection Status -->
-<div id="connectionStatus" class="connection-badge disconnected" style="display: none;">
-    <div class="status-dot"></div>
-    <span id="connectionText">Desconectado</span>
-    <button id="btnLogout" onclick="cerrarSesion()" style="margin-left: 15px; padding: 6px 12px; background: rgba(239, 68, 68, 0.2); border: 1px solid var(--accent-red); border-radius: 15px; color: var(--accent-red); cursor: pointer; font-size: 12px; font-weight: 600;">Cerrar Sesión</button>
-</div>
-
-<div class="container" id="mainContent" style="display: none;">
-    <!-- Header -->
-    <header class="header">
-        <div class="logo-container">
-            <div class="logo-icon"><img src="img/logo.png" alt="TRIMAX" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></div>
-            <h1 class="logo-text">TRIMAX AI</h1>
-        </div>
-        <p class="tagline">Sistema Predictivo de Retrasos</p>
-    </header>
-
-    <!-- Upload Section -->
-    <section class="upload-section">
-        <div class="card">
-            <div class="upload-area" id="uploadArea">
-                <svg class="upload-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="uploadGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#00f5ff;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <rect x="20" y="30" width="60" height="50" rx="5" fill="url(#uploadGrad)" opacity="0.3" stroke="url(#uploadGrad)" stroke-width="2"/>
-                    <rect x="25" y="35" width="50" height="40" rx="3" fill="none" stroke="url(#uploadGrad)" stroke-width="2"/>
-                    <line x1="50" y1="20" x2="50" y2="35" stroke="url(#uploadGrad)" stroke-width="3" stroke-linecap="round"/>
-                    <polyline points="40,25 50,15 60,25" fill="none" stroke="url(#uploadGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="50" cy="55" r="8" fill="url(#uploadGrad)" opacity="0.5"/>
-                    <line x1="50" y1="47" x2="50" y2="63" stroke="url(#uploadGrad)" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="42" y1="55" x2="58" y2="55" stroke="url(#uploadGrad)" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <h3 class="upload-title">Arrastra tu archivo aquí</h3>
-                <p class="upload-subtitle">o haz clic para seleccionar</p>
-                <div class="upload-formats">
-                    <span class="format-badge">.XLSX</span>
-                    <span class="format-badge">.CSV</span>
-                </div>
-                <input type="file" id="fileInput" accept=".xlsx,.csv" style="display: none;">
-            </div>
-
-            <div id="fileInfo" class="file-info hidden">
-                <div class="file-details">
-                    <div class="file-icon">📄</div>
-                    <div>
-                        <div class="file-name" id="fileName"></div>
-                        <div class="file-size" id="fileSize"></div>
-                    </div>
-                </div>
-                <button class="btn-remove" onclick="clearFile()">✕</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Progress Section -->
-    <section id="progressSection" class="progress-section card hidden">
-        <div class="progress-header">
-            <div class="progress-title"><img src="img/levantamiento-de-pesas.gif" alt="Entrenando" style="width: 65px; height: 65px; vertical-align: middle; margin-right: 10px;"> Entrenando Modelo</div>
-            <div class="progress-time" id="elapsedTime">0:00</div>
-        </div>
-        <div class="progress-bar-container">
-            <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
-        </div>
-        <div class="progress-status" id="progressStatus">Iniciando...</div>
-    </section>
-
-    <!-- Train Button -->
-    <div class="btn-container">
-        <button id="btnTrain" class="btn-primary" disabled>
-            <img src="img/cohete.gif" alt="🚀" style="width: 50px; height: 50px; vertical-align: middle; margin-right: 10px; display: inline-block;"> Iniciar Entrenamiento
-        </button>
-    </div>
-
-    <!-- Alerts -->
-    <div id="alertContainer"></div>
-
-    <!-- Results Section -->
-    <section id="resultsSection" class="results-section hidden">
-        <div class="results-header">
-            <div class="success-badge">
-                <span>✓</span>
-                Modelo entrenado exitosamente
-            </div>
-        </div>
-
-        <!-- Metrics -->
-        <div class="metrics-grid">
-            <div class="metric-card">
-                <div class="metric-icon">📊</div>
-                <div class="metric-value" id="metricAccuracy">0%</div>
-                <div class="metric-label">Accuracy</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-icon">📈</div>
-                <div class="metric-value" id="metricRecords">0</div>
-                <div class="metric-label">Registros</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-icon">🔧</div>
-                <div class="metric-value" id="metricFeatures">0</div>
-                <div class="metric-label">Features</div>
-            </div>
-        </div>
-
-        <!-- Results Grid -->
-        <div class="results-grid">
-            <!-- Left Column - Features -->
-            <div class="card">
-                <h3 class="section-title"><span>🎯</span> Variables Importantes</h3>
-                <div class="features-list" id="featuresList"></div>
-            </div>
-
-            <!-- Right Column - Recommendations -->
-            <div class="card">
-                <h3 class="section-title"><span>💡</span> Recomendaciones</h3>
-                <div class="recommendation-item warning">
-                    <div class="recommendation-label">Mes con Mayor Retraso</div>
-                    <div class="recommendation-value" id="recomMonth">-</div>
-                </div>
-                <div class="recommendation-item">
-                    <div class="recommendation-label">Distribucion de Clases</div>
-                    <div class="recommendation-value" id="recomDistribution">-</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Charts -->
-        <div class="results-grid" style="margin-top: 30px;">
-            <div class="card">
-                <h3 class="section-title"><span>📈</span> Retrasos por Mes</h3>
-                <div class="chart-container">
-                    <canvas id="chartMonth"></canvas>
-                </div>
-            </div>
-            <div class="card">
-                <h3 class="section-title"><span>🔍</span> Top Features</h3>
-                <div class="chart-container">
-                    <canvas id="chartFeatures"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
+<div id="root"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-// Config - Detectar URL automaticamente
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
 const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
     ? "http://localhost:8000" 
     : window.location.origin;
 const POLL_INTERVAL = 2000;
 
-// Elements
-const elements = {
-    uploadArea: document.getElementById('uploadArea'),
-    fileInput: document.getElementById('fileInput'),
-    fileInfo: document.getElementById('fileInfo'),
-    fileName: document.getElementById('fileName'),
-    fileSize: document.getElementById('fileSize'),
-    btnTrain: document.getElementById('btnTrain'),
-    progressSection: document.getElementById('progressSection'),
-    progressBar: document.getElementById('progressBar'),
-    progressStatus: document.getElementById('progressStatus'),
-    elapsedTime: document.getElementById('elapsedTime'),
-    alertContainer: document.getElementById('alertContainer'),
-    resultsSection: document.getElementById('resultsSection'),
-    connectionStatus: document.getElementById('connectionStatus'),
-    connectionText: document.getElementById('connectionText'),
-    metricAccuracy: document.getElementById('metricAccuracy'),
-    metricRecords: document.getElementById('metricRecords'),
-    metricFeatures: document.getElementById('metricFeatures'),
-    featuresList: document.getElementById('featuresList'),
-    recomMonth: document.getElementById('recomMonth'),
-    recomDistribution: document.getElementById('recomDistribution')
-};
-
-let currentJobId = null;
-let pollInterval = null;
-let startTime = null;
-let timerInterval = null;
-let authToken = null;
-
-// Login function
-async function handleLogin(event) {
-    event.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const errorDiv = document.getElementById('loginError');
-
-    try {
-        const formData = new URLSearchParams();
-        formData.append('username', username);
-        formData.append('password', password);
-
-        const response = await fetch(`${API_URL}/login?username=${username}&password=${password}`, {
-            method: 'POST'
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            authToken = data.token;
-            localStorage.setItem('trimax_token', authToken);
-            document.getElementById('loginModal').classList.add('hidden');
-            document.getElementById('mainContent').style.display = 'block';
-            document.getElementById('connectionStatus').style.display = 'flex';
-            checkConnection();
-        } else {
-            errorDiv.textContent = 'Credenciales incorrectas';
-            errorDiv.style.display = 'block';
-        }
-    } catch (e) {
-        errorDiv.textContent = 'Error de conexión. Verifica que el servidor esté corriendo.';
-        errorDiv.style.display = 'block';
-    }
+function translateFeatureName(name) {
+    const translations = {
+        'dia_semana': 'Día de la Semana',
+        'semana_anual': 'Semana del Año',
+        'mes': 'Mes',
+        'es_fin_de_semana': 'Fin de Semana',
+        'trimestre': 'Trimestre',
+        'TIPO TRATAMIENTO_enc': 'Tipo de Tratamiento',
+        'SEDE_enc': 'Sede',
+        'PLANTA_enc': 'Planta',
+        'PRODUCTO_enc': 'Producto',
+        'TIPO_enc': 'Tipo',
+        'SIMTIPO_enc': 'Sim Tipo',
+        'dia': 'Día del Mes',
+        'anio': 'Año',
+        'hora_inicio': 'Hora de Inicio'
+    };
+    return translations[name] || name.replace(/_/g, ' ').replace(/_enc/g, '').replace(/\b\w/g, l => l.toUpperCase());
 }
 
-// Verificar si ya hay token guardado
-window.addEventListener('DOMContentLoaded', () => {
-    const savedToken = localStorage.getItem('trimax_token');
-    if (savedToken) {
-        authToken = savedToken;
-        document.getElementById('loginModal').classList.add('hidden');
-        document.getElementById('mainContent').style.display = 'block';
-        document.getElementById('connectionStatus').style.display = 'flex';
-        checkConnection();
-    } else {
-        document.getElementById('loginForm').addEventListener('submit', handleLogin);
-    }
-});
+function LoginModal({ onLogin }) {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
-// Check backend connection
-async function checkConnection() {
-    try {
-        const response = await fetch(`${API_URL}/health`, { method: 'GET' });
-        if (response.ok) {
-            elements.connectionStatus.className = 'connection-badge connected';
-            elements.connectionText.textContent = 'Conectado';
-            return true;
-        }
-    } catch (e) {}
-    elements.connectionStatus.className = 'connection-badge disconnected';
-    elements.connectionText.textContent = 'Desconectado';
-    return false;
-}
-
-// Show alert
-function showAlert(message, type = 'error') {
-    const alert = document.createElement('div');
-    alert.className = `alert alert-${type}`;
-    alert.innerHTML = `<span>${type === 'error' ? '⚠️' : '✓'}</span> ${message}`;
-    elements.alertContainer.appendChild(alert);
-    setTimeout(() => alert.remove(), 5000);
-}
-
-// Clear file
-function clearFile() {
-    elements.fileInput.value = '';
-    elements.fileInfo.classList.add('hidden');
-    elements.uploadArea.style.display = 'block';
-    elements.btnTrain.disabled = true;
-    elements.resultsSection.classList.add('hidden');
-}
-
-// Format time
-function formatTime(seconds) {
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
-    return `${m}:${s.toString().padStart(2, '0')}`;
-}
-
-// Update timer
-function updateTimer() {
-    if (startTime) {
-        const elapsed = Math.floor((Date.now() - startTime) / 1000);
-        elements.elapsedTime.textContent = formatTime(elapsed);
-    }
-}
-
-// Monitor job
-async function monitorJob(jobId) {
-    pollInterval = setInterval(async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
-            const response = await fetch(`${API_URL}/train-status/${jobId}`);
-            const job = await response.json();
-
-            switch(job.status) {
-                case 'pending':
-                    elements.progressBar.style.width = '10%';
-                    elements.progressStatus.textContent = 'Preparando datos...';
-                    break;
-                case 'running':
-                    const elapsed = Math.floor((Date.now() - startTime) / 1000);
-                    const progress = Math.min(10 + elapsed, 90);
-                    elements.progressBar.style.width = `${progress}%`;
-                    elements.progressStatus.textContent = 'Entrenando modelo...';
-                    break;
-                case 'completed':
-                    clearInterval(pollInterval);
-                    clearInterval(timerInterval);
-                    elements.progressBar.style.width = '100%';
-                    elements.progressStatus.textContent = 'Completado!';
-                    setTimeout(() => {
-                        elements.progressSection.classList.add('hidden');
-                        displayResults(job.results);
-                    }, 1000);
-                    break;
-                case 'failed':
-                    clearInterval(pollInterval);
-                    clearInterval(timerInterval);
-                    elements.progressSection.classList.add('hidden');
-                    elements.btnTrain.disabled = false;
-                    showAlert(`Error: ${job.error}`);
-                    break;
+            const response = await fetch(`${API_URL}/login?username=${username}&password=${password}`, {
+                method: 'POST'
+            });
+            if (response.ok) {
+                const data = await response.json();
+                onLogin(data.token);
+            } else {
+                setError('Credenciales incorrectas');
             }
         } catch (e) {
-            console.error('Poll error:', e);
+            setError('Error de conexion. Verifica que el servidor este corriendo.');
         }
-    }, POLL_INTERVAL);
+    };
+
+    return (
+        <div className="login-modal">
+            <div className="login-card">
+                <div className="logo-container" style={{marginBottom: '30px'}}>
+                    <div className="logo-icon">
+                        <img src="img/logo.png" alt="TRIMAX" style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%'}} />
+                    </div>
+                    <h1 className="logo-text" style={{fontSize: '36px'}}>TRIMAX AI</h1>
+                </div>
+                <h2 style={{textAlign: 'center', marginBottom: '30px', fontFamily: "'Orbitron', sans-serif"}}>Iniciar Sesion</h2>
+                <form onSubmit={handleSubmit}>
+                    <input 
+                        type="text" 
+                        placeholder="Usuario" 
+                        required 
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        style={{width: '100%', padding: '15px', marginBottom: '15px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'rgba(18, 18, 26, 0.8)', color: 'var(--text-primary)', fontSize: '16px'}}
+                    />
+                    <input 
+                        type="password" 
+                        placeholder="Contrasena" 
+                        required 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        style={{width: '100%', padding: '15px', marginBottom: '20px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'rgba(18, 18, 26, 0.8)', color: 'var(--text-primary)', fontSize: '16px'}}
+                    />
+                    <button type="submit" className="btn-primary" style={{width: '100%'}}>Ingresar</button>
+                </form>
+                {error && <div style={{color: 'var(--accent-red)', marginTop: '15px', textAlign: 'center'}}>{error}</div>}
+            </div>
+        </div>
+    );
 }
 
-// Train model
-async function trainModel() {
-    const file = elements.fileInput.files[0];
-    if (!file) return showAlert('Selecciona un archivo primero');
+function ConnectionStatus({ isConnected, onLogout }) {
+    return (
+        <div className={`connection-badge ${isConnected ? 'connected' : 'disconnected'}`} style={{display: 'flex'}}>
+            <div className="status-dot"></div>
+            <span>{isConnected ? 'Conectado' : 'Desconectado'}</span>
+            <button 
+                onClick={onLogout}
+                style={{marginLeft: '15px', padding: '6px 12px', background: 'rgba(239, 68, 68, 0.2)', border: '1px solid var(--accent-red)', borderRadius: '15px', color: 'var(--accent-red)', cursor: 'pointer', fontSize: '12px', fontWeight: '600'}}
+            >
+                Cerrar Sesion
+            </button>
+        </div>
+    );
+}
 
-    if (!await checkConnection()) {
-        return showAlert('No hay conexion con el backend');
-    }
+function Header() {
+    return (
+        <header className="header">
+            <div className="logo-container">
+                <div className="logo-icon">
+                    <img src="img/logo.png" alt="TRIMAX" style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%'}} />
+                </div>
+                <h1 className="logo-text">TRIMAX AI</h1>
+            </div>
+            <p className="tagline">Sistema Predictivo de Retrasos</p>
+        </header>
+    );
+}
 
-    const formData = new FormData();
-    formData.append('file', file);
+function FileStatistics({ stats }) {
+    if (!stats) return null;
 
-    elements.btnTrain.disabled = true;
-    elements.resultsSection.classList.add('hidden');
-    elements.progressSection.classList.remove('hidden');
-    elements.progressBar.style.width = '0%';
+    return (
+        <div className="stats-card">
+            <div className="stats-title">
+                <span>📊</span>
+                <span>Estadisticas del Archivo</span>
+            </div>
+            <div className="stats-grid">
+                <div className="stat-item">
+                    <div className="stat-label">Total de Registros</div>
+                    <div className="stat-value">{stats.total_registros?.toLocaleString() || '0'}</div>
+                </div>
+                <div className="stat-item">
+                    <div className="stat-label">Total de Columnas</div>
+                    <div className="stat-value">{stats.total_columnas || '0'}</div>
+                </div>
+                <div className="stat-item">
+                    <div className="stat-label">Tamano del Archivo</div>
+                    <div className="stat-value">{stats.tamano_archivo_mb || 0} MB</div>
+                </div>
+                {stats.fecha_minima && (
+                    <div className="stat-item">
+                        <div className="stat-label">Rango de Fechas</div>
+                        <div className="stat-value" style={{fontSize: '14px'}}>
+                            {stats.fecha_minima} - {stats.fecha_maxima}
+                        </div>
+                    </div>
+                )}
+            </div>
+            {stats.columnas && stats.columnas.length > 0 && (
+                <div className="stat-columns">
+                    <strong>Columnas detectadas: </strong>
+                    {stats.columnas.slice(0, 10).join(', ')}
+                    {stats.columnas.length > 10 && ` (+${stats.columnas.length - 10} mas)`}
+                </div>
+            )}
+        </div>
+    );
+}
 
-    startTime = Date.now();
-    timerInterval = setInterval(updateTimer, 1000);
+function UploadSection({ onFileSelect, selectedFile, fileStats }) {
+    const [isDragging, setIsDragging] = useState(false);
+    const fileInputRef = useRef(null);
 
-    try {
-        const response = await fetch(`${API_URL}/train-retrasos`, {
-            method: 'POST',
-            body: formData
+    const handleFileChange = async (file) => {
+        if (!file) return;
+
+        const ext = file.name.split('.').pop().toLowerCase();
+        if (!['xlsx', 'csv'].includes(ext)) {
+            alert('Formato no valido. Use .xlsx o .csv');
+            return;
+        }
+
+        if (file.size > 100 * 1024 * 1024) {
+            alert('Archivo muy grande. Maximo 100MB');
+            return;
+        }
+
+        onFileSelect(file);
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            const response = await fetch(`${API_URL}/analyze-file`, {
+                method: 'POST',
+                body: formData
+            });
+            if (response.ok) {
+                const stats = await response.json();
+                onFileSelect(file, stats);
+            }
+        } catch (e) {
+            console.error('Error analizando archivo:', e);
+        }
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+        setIsDragging(true);
+    };
+
+    const handleDragLeave = () => {
+        setIsDragging(false);
+    };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        setIsDragging(false);
+        if (e.dataTransfer.files.length) {
+            handleFileChange(e.dataTransfer.files[0]);
+        }
+    };
+
+    return (
+        <section className="upload-section">
+            <div className="card">
+                {!selectedFile ? (
+                    <div 
+                        className={`upload-area ${isDragging ? 'dragover' : ''}`}
+                        onClick={() => fileInputRef.current?.click()}
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        onDrop={handleDrop}
+                    >
+                        <svg className="upload-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="uploadGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style={{stopColor:'#00f5ff',stopOpacity:1}} />
+                                    <stop offset="100%" style={{stopColor:'#a855f7',stopOpacity:1}} />
+                                </linearGradient>
+                            </defs>
+                            <rect x="20" y="30" width="60" height="50" rx="5" fill="url(#uploadGrad)" opacity="0.3" stroke="url(#uploadGrad)" strokeWidth="2"/>
+                            <rect x="25" y="35" width="50" height="40" rx="3" fill="none" stroke="url(#uploadGrad)" strokeWidth="2"/>
+                            <line x1="50" y1="20" x2="50" y2="35" stroke="url(#uploadGrad)" strokeWidth="3" strokeLinecap="round"/>
+                            <polyline points="40,25 50,15 60,25" fill="none" stroke="url(#uploadGrad)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                            <circle cx="50" cy="55" r="8" fill="url(#uploadGrad)" opacity="0.5"/>
+                            <line x1="50" y1="47" x2="50" y2="63" stroke="url(#uploadGrad)" strokeWidth="2" strokeLinecap="round"/>
+                            <line x1="42" y1="55" x2="58" y2="55" stroke="url(#uploadGrad)" strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                        <h3 className="upload-title">Arrastra tu archivo aqui</h3>
+                        <p className="upload-subtitle">o haz clic para seleccionar</p>
+                        <div className="upload-formats">
+                            <span className="format-badge">.XLSX</span>
+                            <span className="format-badge">.CSV</span>
+                        </div>
+                        <input 
+                            ref={fileInputRef}
+                            type="file" 
+                            accept=".xlsx,.csv" 
+                            style={{display: 'none'}}
+                            onChange={(e) => handleFileChange(e.target.files[0])}
+                        />
+                    </div>
+                ) : (
+                    <div className="file-info">
+                        <div className="file-details">
+                            <div className="file-icon">📄</div>
+                            <div>
+                                <div className="file-name">{selectedFile.name}</div>
+                                <div className="file-size">{(selectedFile.size / 1024 / 1024).toFixed(2)} MB</div>
+                            </div>
+                        </div>
+                        <button 
+                            className="btn-remove"
+                            onClick={() => onFileSelect(null)}
+                        >
+                            ✕
+                        </button>
+                    </div>
+                )}
+            </div>
+            {fileStats && <FileStatistics stats={fileStats} />}
+        </section>
+    );
+}
+
+function ProgressSection({ progress, status, elapsedTime }) {
+    if (!progress && progress !== 0) return null;
+
+    return (
+        <section className="progress-section card">
+            <div className="progress-header">
+                <div className="progress-title">
+                    <img src="img/levantamiento-de-pesas.gif" alt="Entrenando" style={{width: '65px', height: '65px', verticalAlign: 'middle', marginRight: '10px'}} />
+                    Entrenando Modelo
+                </div>
+                <div className="progress-time">{elapsedTime}</div>
+            </div>
+            <div className="progress-bar-container">
+                <div className="progress-bar-fill" style={{width: `${progress}%`}}></div>
+            </div>
+            <div className="progress-status">{status}</div>
+        </section>
+    );
+}
+
+function TrainButton({ disabled, onTrain }) {
+    return (
+        <div className="btn-container">
+            <button 
+                className="btn-primary" 
+                disabled={disabled}
+                onClick={onTrain}
+            >
+                <img src="img/cohete.gif" alt="🚀" style={{width: '50px', height: '50px', verticalAlign: 'middle', marginRight: '10px', display: 'inline-block'}} />
+                Iniciar Entrenamiento
+            </button>
+        </div>
+    );
+}
+
+function Alert({ message, type }) {
+    if (!message) return null;
+    return (
+        <div className={`alert alert-${type}`}>
+            <span>{type === 'error' ? '⚠️' : '✓'}</span>
+            {message}
+        </div>
+    );
+}
+
+function ResultsSection({ results }) {
+    const chartMonthRef = useRef(null);
+    const chartFeaturesRef = useRef(null);
+    const chartMonthInstance = useRef(null);
+    const chartFeaturesInstance = useRef(null);
+
+    useEffect(() => {
+        if (!results) return;
+
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.borderColor = 'rgba(0, 245, 255, 0.1)';
+
+        const monthData = results.retrasos_por_mes || {};
+        const monthLabels = Object.keys(monthData).map(m => {
+            const names = ['', 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+            return names[parseInt(m)] || m;
         });
 
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        if (chartMonthRef.current) {
+            if (chartMonthInstance.current) chartMonthInstance.current.destroy();
+            chartMonthInstance.current = new Chart(chartMonthRef.current, {
+                type: 'bar',
+                data: {
+                    labels: monthLabels,
+                    datasets: [{
+                        label: 'Retrasos %',
+                        data: Object.values(monthData),
+                        backgroundColor: 'rgba(0, 245, 255, 0.6)',
+                        borderColor: 'rgba(0, 245, 255, 1)',
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(0, 245, 255, 0.1)' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
 
-        const data = await response.json();
-        currentJobId = data.job_id;
-        monitorJob(currentJobId);
+        const features = results.top_features || {};
+        const topFeatures = Object.entries(features).slice(0, 5);
 
-    } catch (e) {
-        clearInterval(timerInterval);
-        elements.progressSection.classList.add('hidden');
-        elements.btnTrain.disabled = false;
-        showAlert(`Error: ${e.message}`);
-    }
-}
+        if (chartFeaturesRef.current) {
+            if (chartFeaturesInstance.current) chartFeaturesInstance.current.destroy();
+            chartFeaturesInstance.current = new Chart(chartFeaturesRef.current, {
+                type: 'doughnut',
+                data: {
+                    labels: topFeatures.map(([n]) => translateFeatureName(n)),
+                    datasets: [{
+                        data: topFeatures.map(([, v]) => (v * 100).toFixed(2)),
+                        backgroundColor: [
+                            'rgba(0, 245, 255, 0.8)',
+                            'rgba(168, 85, 247, 0.8)',
+                            'rgba(236, 72, 153, 0.8)',
+                            'rgba(16, 185, 129, 0.8)',
+                            'rgba(245, 158, 11, 0.8)'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: { padding: 15, usePointStyle: true }
+                        }
+                    }
+                }
+            });
+        }
 
-// Función para traducir nombres de features
-function translateFeatureName(name) {
-        const translations = {
-            'dia_semana': 'Día de la Semana',
-            'semana_anual': 'Semana del Año',
-            'mes': 'Mes',
-            'es_fin_de_semana': 'Fin de Semana',
-            'trimestre': 'Trimestre',
-            'TIPO TRATAMIENTO_enc': 'Tipo de Tratamiento',
-            'SEDE_enc': 'Sede',
-            'PLANTA_enc': 'Planta',
-            'PRODUCTO_enc': 'Producto',
-            'TIPO_enc': 'Tipo',
-            'SIMTIPO_enc': 'Sim Tipo',
-            'dia': 'Día del Mes',
-            'anio': 'Año',
-            'hora_inicio': 'Hora de Inicio'
+        return () => {
+            if (chartMonthInstance.current) chartMonthInstance.current.destroy();
+            if (chartFeaturesInstance.current) chartFeaturesInstance.current.destroy();
         };
-        return translations[name] || name.replace(/_/g, ' ').replace(/_enc/g, '').replace(/\b\w/g, l => l.toUpperCase());
-}
+    }, [results]);
 
-// Display results
-function displayResults(results) {
-    elements.btnTrain.disabled = false;
-    elements.resultsSection.classList.remove('hidden');
+    if (!results) return null;
 
-    // Metrics
     const accuracy = results.accuracy_test ? (results.accuracy_test * 100).toFixed(2) : '0';
-    elements.metricAccuracy.textContent = `${accuracy}%`;
-    elements.metricRecords.textContent = results.registros_procesados?.toLocaleString() || '0';
-    elements.metricFeatures.textContent = results.features_utilizadas || '0';
-
-    // Features
-    elements.featuresList.innerHTML = '';
     const features = results.top_features || {};
     const maxValue = Math.max(...Object.values(features));
-    
-    Object.entries(features).forEach(([name, value]) => {
-        const percent = (value * 100).toFixed(2);
-        const barWidth = (value / maxValue) * 100;
-        const displayName = translateFeatureName(name);
-        
-        const item = document.createElement('div');
-        item.className = 'feature-item';
-        item.innerHTML = `
-            <span class="feature-name">${displayName}</span>
-            <div class="feature-bar-container">
-                <div class="feature-bar" style="width: ${barWidth}%"></div>
-            </div>
-            <span class="feature-value">${percent}%</span>
-        `;
-        elements.featuresList.appendChild(item);
-    });
-
-    // Recommendations
     const monthNames = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 
                         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     const month = results.recomendacion_mes || 0;
-    elements.recomMonth.textContent = monthNames[month] || month;
-
     const dist = results.distribucion_clases || {};
-    const noDelay = ((dist[0] || 0) * 100).toFixed(1);
     const withDelay = ((dist[1] || 0) * 100).toFixed(1);
-    elements.recomDistribution.textContent = `${withDelay}% retrasos`;
 
-    // Charts
-    createCharts(results);
+    return (
+        <section className="results-section">
+            <div className="results-header">
+                <div className="success-badge">
+                    <span>✓</span>
+                    Modelo entrenado exitosamente
+                </div>
+            </div>
+
+            <div className="metrics-grid">
+                <div className="metric-card">
+                    <div className="metric-icon">📊</div>
+                    <div className="metric-value">{accuracy}%</div>
+                    <div className="metric-label">Accuracy</div>
+                </div>
+                <div className="metric-card">
+                    <div className="metric-icon">📈</div>
+                    <div className="metric-value">{results.registros_procesados?.toLocaleString() || '0'}</div>
+                    <div className="metric-label">Registros</div>
+                </div>
+                <div className="metric-card">
+                    <div className="metric-icon">🔧</div>
+                    <div className="metric-value">{results.features_utilizadas || '0'}</div>
+                    <div className="metric-label">Features</div>
+                </div>
+            </div>
+
+            <div className="results-grid">
+                <div className="card">
+                    <h3 className="section-title"><span>🎯</span> Variables Importantes</h3>
+                    <div className="features-list">
+                        {Object.entries(features).map(([name, value]) => {
+                            const percent = (value * 100).toFixed(2);
+                            const barWidth = (value / maxValue) * 100;
+                            const displayName = translateFeatureName(name);
+                            return (
+                                <div key={name} className="feature-item">
+                                    <span className="feature-name">{displayName}</span>
+                                    <div className="feature-bar-container">
+                                        <div className="feature-bar" style={{width: `${barWidth}%`}}></div>
+                                    </div>
+                                    <span className="feature-value">{percent}%</span>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                <div className="card">
+                    <h3 className="section-title"><span>💡</span> Recomendaciones</h3>
+                    <div className="recommendation-item warning">
+                        <div className="recommendation-label">Mes con Mayor Retraso</div>
+                        <div className="recommendation-value">{monthNames[month] || month}</div>
+                    </div>
+                    <div className="recommendation-item">
+                        <div className="recommendation-label">Distribucion de Clases</div>
+                        <div className="recommendation-value">{withDelay}% retrasos</div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="results-grid" style={{marginTop: '30px'}}>
+                <div className="card">
+                    <h3 className="section-title"><span>📈</span> Retrasos por Mes</h3>
+                    <div className="chart-container">
+                        <canvas ref={chartMonthRef}></canvas>
+                    </div>
+                </div>
+                <div className="card">
+                    <h3 className="section-title"><span>🔍</span> Top Features</h3>
+                    <div className="chart-container">
+                        <canvas ref={chartFeaturesRef}></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
 }
 
-// Create charts
-function createCharts(results) {
-    // Chart colors
-    Chart.defaults.color = '#94a3b8';
-    Chart.defaults.borderColor = 'rgba(0, 245, 255, 0.1)';
+function App() {
+    const [authToken, setAuthToken] = useState(localStorage.getItem('trimax_token'));
+    const [isConnected, setIsConnected] = useState(false);
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [fileStats, setFileStats] = useState(null);
+    const [trainingProgress, setTrainingProgress] = useState(null);
+    const [trainingStatus, setTrainingStatus] = useState('');
+    const [elapsedTime, setElapsedTime] = useState('0:00');
+    const [currentJobId, setCurrentJobId] = useState(null);
+    const [results, setResults] = useState(null);
+    const [alert, setAlert] = useState(null);
+    const startTimeRef = useRef(null);
+    const timerIntervalRef = useRef(null);
+    const pollIntervalRef = useRef(null);
 
-    // Month chart
-    const monthData = results.retrasos_por_mes || {};
-    const monthLabels = Object.keys(monthData).map(m => {
-        const names = ['', 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-        return names[parseInt(m)] || m;
-    });
-
-    const ctx1 = document.getElementById('chartMonth');
-    if (Chart.getChart(ctx1)) Chart.getChart(ctx1).destroy();
-    
-    new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: monthLabels,
-            datasets: [{
-                label: 'Retrasos %',
-                data: Object.values(monthData),
-                backgroundColor: 'rgba(0, 245, 255, 0.6)',
-                borderColor: 'rgba(0, 245, 255, 1)',
-                borderWidth: 2,
-                borderRadius: 8
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: {
-                y: { beginAtZero: true, grid: { color: 'rgba(0, 245, 255, 0.1)' } },
-                x: { grid: { display: false } }
-            }
+    useEffect(() => {
+        if (authToken) {
+            checkConnection();
+            const interval = setInterval(checkConnection, 10000);
+            return () => clearInterval(interval);
         }
-    });
+    }, [authToken]);
 
-    // Features chart
-    const features = results.top_features || {};
-    const topFeatures = Object.entries(features).slice(0, 5);
-
-    const ctx2 = document.getElementById('chartFeatures');
-    if (Chart.getChart(ctx2)) Chart.getChart(ctx2).destroy();
-
-    new Chart(ctx2, {
-        type: 'doughnut',
-        data: {
-            labels: topFeatures.map(([n]) => translateFeatureName(n)),
-            datasets: [{
-                data: topFeatures.map(([, v]) => (v * 100).toFixed(2)),
-                backgroundColor: [
-                    'rgba(0, 245, 255, 0.8)',
-                    'rgba(168, 85, 247, 0.8)',
-                    'rgba(236, 72, 153, 0.8)',
-                    'rgba(16, 185, 129, 0.8)',
-                    'rgba(245, 158, 11, 0.8)'
-                ],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'right',
-                    labels: { padding: 15, usePointStyle: true }
-                }
-            }
+    useEffect(() => {
+        if (currentJobId) {
+            monitorJob(currentJobId);
+            return () => {
+                if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
+                if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
+            };
         }
-    });
-}
+    }, [currentJobId]);
 
-// Event Listeners
-elements.uploadArea.addEventListener('click', () => elements.fileInput.click());
-
-elements.fileInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const ext = file.name.split('.').pop().toLowerCase();
-    if (!['xlsx', 'csv'].includes(ext)) {
-        return showAlert('Formato no valido. Use .xlsx o .csv');
-    }
-
-    if (file.size > 100 * 1024 * 1024) {
-        return showAlert('Archivo muy grande. Maximo 100MB');
-    }
-
-    elements.fileName.textContent = file.name;
-    elements.fileSize.textContent = `${(file.size / 1024 / 1024).toFixed(2)} MB`;
-    elements.fileInfo.classList.remove('hidden');
-    elements.uploadArea.style.display = 'none';
-    elements.btnTrain.disabled = false;
-});
-
-elements.uploadArea.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    elements.uploadArea.classList.add('dragover');
-});
-
-elements.uploadArea.addEventListener('dragleave', () => {
-    elements.uploadArea.classList.remove('dragover');
-});
-
-elements.uploadArea.addEventListener('drop', (e) => {
-    e.preventDefault();
-    elements.uploadArea.classList.remove('dragover');
-    if (e.dataTransfer.files.length) {
-        elements.fileInput.files = e.dataTransfer.files;
-        elements.fileInput.dispatchEvent(new Event('change'));
-    }
-});
-
-elements.btnTrain.addEventListener('click', trainModel);
-
-// Funcion para cerrar sesion
-async function cerrarSesion() {
-    if (authToken) {
+    const checkConnection = async () => {
         try {
-            await fetch(`${API_URL}/logout?token=${authToken}`, { method: 'POST' });
+            const response = await fetch(`${API_URL}/health`, { method: 'GET' });
+            setIsConnected(response.ok);
         } catch (e) {
-            console.log('Error al cerrar sesion en servidor');
+            setIsConnected(false);
         }
+    };
+
+    const handleLogin = (token) => {
+        setAuthToken(token);
+        localStorage.setItem('trimax_token', token);
+    };
+
+    const handleLogout = async () => {
+        if (authToken) {
+            try {
+                await fetch(`${API_URL}/logout?token=${authToken}`, { method: 'POST' });
+            } catch (e) {
+                console.log('Error al cerrar sesion en servidor');
+            }
+        }
+        setAuthToken(null);
+        localStorage.removeItem('trimax_token');
+        setSelectedFile(null);
+        setFileStats(null);
+        setResults(null);
+        setTrainingProgress(null);
+    };
+
+    const handleFileSelect = (file, stats = null) => {
+        setSelectedFile(file);
+        setFileStats(stats);
+        setResults(null);
+        setTrainingProgress(null);
+    };
+
+    const formatTime = (seconds) => {
+        const m = Math.floor(seconds / 60);
+        const s = seconds % 60;
+        return `${m}:${s.toString().padStart(2, '0')}`;
+    };
+
+    const monitorJob = (jobId) => {
+        startTimeRef.current = Date.now();
+        timerIntervalRef.current = setInterval(() => {
+            if (startTimeRef.current) {
+                const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
+                setElapsedTime(formatTime(elapsed));
+            }
+        }, 1000);
+
+        pollIntervalRef.current = setInterval(async () => {
+            try {
+                const response = await fetch(`${API_URL}/train-status/${jobId}`);
+                const job = await response.json();
+
+                switch(job.status) {
+                    case 'pending':
+                        setTrainingProgress(10);
+                        setTrainingStatus('Preparando datos...');
+                        break;
+                    case 'running':
+                        const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
+                        setTrainingProgress(Math.min(10 + elapsed, 90));
+                        setTrainingStatus('Entrenando modelo...');
+                        break;
+                    case 'completed':
+                        clearInterval(pollIntervalRef.current);
+                        clearInterval(timerIntervalRef.current);
+                        setTrainingProgress(100);
+                        setTrainingStatus('Completado!');
+                        setTimeout(() => {
+                            setTrainingProgress(null);
+                            setResults(job.results);
+                        }, 1000);
+                        break;
+                    case 'failed':
+                        clearInterval(pollIntervalRef.current);
+                        clearInterval(timerIntervalRef.current);
+                        setTrainingProgress(null);
+                        setAlert({ message: `Error: ${job.error}`, type: 'error' });
+                        setTimeout(() => setAlert(null), 5000);
+                        break;
+                }
+            } catch (e) {
+                console.error('Poll error:', e);
+            }
+        }, POLL_INTERVAL);
+    };
+
+    const handleTrain = async () => {
+        if (!selectedFile) {
+            setAlert({ message: 'Selecciona un archivo primero', type: 'error' });
+            setTimeout(() => setAlert(null), 5000);
+            return;
+        }
+
+        if (!isConnected) {
+            setAlert({ message: 'No hay conexion con el backend', type: 'error' });
+            setTimeout(() => setAlert(null), 5000);
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+
+        setTrainingProgress(0);
+        setTrainingStatus('Iniciando...');
+        setResults(null);
+
+        try {
+            const response = await fetch(`${API_URL}/train-retrasos`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+            const data = await response.json();
+            setCurrentJobId(data.job_id);
+        } catch (e) {
+            setTrainingProgress(null);
+            setAlert({ message: `Error: ${e.message}`, type: 'error' });
+            setTimeout(() => setAlert(null), 5000);
+        }
+    };
+
+    if (!authToken) {
+        return <LoginModal onLogin={handleLogin} />;
     }
-    localStorage.removeItem('trimax_token');
-    authToken = null;
-    document.getElementById('loginModal').classList.remove('hidden');
-    document.getElementById('mainContent').style.display = 'none';
-    document.getElementById('connectionStatus').style.display = 'none';
-    document.getElementById('username').value = '';
-    document.getElementById('password').value = '';
-    document.getElementById('loginError').style.display = 'none';
+
+    return (
+        <>
+            <ConnectionStatus isConnected={isConnected} onLogout={handleLogout} />
+            <div className="container">
+                <Header />
+                <UploadSection 
+                    onFileSelect={handleFileSelect}
+                    selectedFile={selectedFile}
+                    fileStats={fileStats}
+                />
+                <ProgressSection 
+                    progress={trainingProgress}
+                    status={trainingStatus}
+                    elapsedTime={elapsedTime}
+                />
+                <TrainButton 
+                    disabled={!selectedFile || trainingProgress !== null}
+                    onTrain={handleTrain}
+                />
+                <Alert message={alert?.message} type={alert?.type} />
+                <ResultsSection results={results} />
+            </div>
+        </>
+    );
 }
 
-// Init - solo si ya hay sesion
-if (authToken) {
-    checkConnection();
-    setInterval(checkConnection, 10000);
-}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
 </script>
 </body>
 </html>

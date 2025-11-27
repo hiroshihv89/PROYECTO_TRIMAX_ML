@@ -12,6 +12,7 @@ from datetime import datetime
 import zipfile
 from pathlib import Path
 import secrets
+import pandas as pd
 
 # Configuracion de logging
 logging.basicConfig(
@@ -167,6 +168,76 @@ async def health_check():
         "service": "trimax_api",
         "timestamp": datetime.now().isoformat()
     })
+
+@app.post("/analyze-file")
+async def analyze_file(file: UploadFile = File(...)):
+    """
+    Analiza el archivo y devuelve estadisticas basicas sin entrenar el modelo.
+    """
+    try:
+        if not file.filename:
+            raise HTTPException(status_code=400, detail="Nombre de archivo no valido")
+        
+        if not (file.filename.lower().endswith(('.xlsx', '.csv'))):
+            raise HTTPException(
+                status_code=400, 
+                detail="Formato de archivo no soportado. Use .xlsx o .csv"
+            )
+        
+        file_content = await file.read()
+        file_size = len(file_content)
+        
+        if file_size > 100 * 1024 * 1024:
+            raise HTTPException(
+                status_code=400, 
+                detail="Archivo demasiado grande. Maximo 100MB permitido."
+            )
+        
+        # Guardar temporalmente para analizar
+        import tempfile
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.xlsx' if file.filename.endswith('.xlsx') else '.csv') as tmp:
+            tmp.write(file_content)
+            tmp_path = tmp.name
+        
+        try:
+            # Leer y analizar
+            if file.filename.endswith('.xlsx'):
+                df = pd.read_excel(tmp_path)
+            else:
+                df = pd.read_csv(tmp_path)
+            
+            # Calcular estadisticas
+            stats = {
+                "total_registros": int(len(df)),
+                "total_columnas": int(len(df.columns)),
+                "columnas": list(df.columns),
+                "tamano_archivo_mb": round(file_size / (1024 * 1024), 2)
+            }
+            
+            # Si tiene fechas, calcular rango
+            if 'FECHA_INICIO' in df.columns:
+                try:
+                    df['FECHA_INICIO'] = pd.to_datetime(df['FECHA_INICIO'], errors='coerce')
+                    fechas_validas = df['FECHA_INICIO'].dropna()
+                    if len(fechas_validas) > 0:
+                        stats["fecha_minima"] = fechas_validas.min().strftime("%Y-%m-%d")
+                        stats["fecha_maxima"] = fechas_validas.max().strftime("%Y-%m-%d")
+                except:
+                    pass
+            
+            return JSONResponse(stats)
+            
+        finally:
+            # Eliminar archivo temporal
+            if os.path.exists(tmp_path):
+                os.unlink(tmp_path)
+                
+    except Exception as e:
+        logger.error(f"Error analizando archivo: {str(e)}")
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Error al analizar archivo: {str(e)}"
+        )
 
 @app.post("/train-retrasos")
 async def train_retrasos(
