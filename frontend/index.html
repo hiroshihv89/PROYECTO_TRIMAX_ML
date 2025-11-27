@@ -893,49 +893,7 @@ function Header() {
     );
 }
 
-function FileStatistics({ stats }) {
-    if (!stats) return null;
-
-    return (
-        <div className="stats-card">
-            <div className="stats-title">
-                <span>📊</span>
-                <span>Estadisticas del Archivo</span>
-            </div>
-            <div className="stats-grid">
-                <div className="stat-item">
-                    <div className="stat-label">Total de Registros</div>
-                    <div className="stat-value">{stats.total_registros?.toLocaleString() || '0'}</div>
-                </div>
-                <div className="stat-item">
-                    <div className="stat-label">Total de Columnas</div>
-                    <div className="stat-value">{stats.total_columnas || '0'}</div>
-                </div>
-                <div className="stat-item">
-                    <div className="stat-label">Tamano del Archivo</div>
-                    <div className="stat-value">{stats.tamano_archivo_mb || 0} MB</div>
-                </div>
-                {stats.fecha_minima && (
-                    <div className="stat-item">
-                        <div className="stat-label">Rango de Fechas</div>
-                        <div className="stat-value" style={{fontSize: '14px'}}>
-                            {stats.fecha_minima} - {stats.fecha_maxima}
-                        </div>
-                    </div>
-                )}
-            </div>
-            {stats.columnas && stats.columnas.length > 0 && (
-                <div className="stat-columns">
-                    <strong>Columnas detectadas: </strong>
-                    {stats.columnas.slice(0, 10).join(', ')}
-                    {stats.columnas.length > 10 && ` (+${stats.columnas.length - 10} mas)`}
-                </div>
-            )}
-        </div>
-    );
-}
-
-function UploadSection({ onFileSelect, selectedFile, fileStats }) {
+function UploadSection({ onFileSelect, selectedFile }) {
     const [isDragging, setIsDragging] = useState(false);
     const fileInputRef = useRef(null);
 
@@ -954,21 +912,6 @@ function UploadSection({ onFileSelect, selectedFile, fileStats }) {
         }
 
         onFileSelect(file);
-
-        try {
-            const formData = new FormData();
-            formData.append('file', file);
-            const response = await fetch(`${API_URL}/analyze-file`, {
-                method: 'POST',
-                body: formData
-            });
-            if (response.ok) {
-                const stats = await response.json();
-                onFileSelect(file, stats);
-            }
-        } catch (e) {
-            console.error('Error analizando archivo:', e);
-        }
     };
 
     const handleDragOver = (e) => {
@@ -1046,7 +989,6 @@ function UploadSection({ onFileSelect, selectedFile, fileStats }) {
                     </div>
                 )}
             </div>
-            {fileStats && <FileStatistics stats={fileStats} />}
         </section>
     );
 }
@@ -1275,7 +1217,6 @@ function App() {
     const [authToken, setAuthToken] = useState(localStorage.getItem('trimax_token'));
     const [isConnected, setIsConnected] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
-    const [fileStats, setFileStats] = useState(null);
     const [trainingProgress, setTrainingProgress] = useState(null);
     const [trainingStatus, setTrainingStatus] = useState('');
     const [elapsedTime, setElapsedTime] = useState('0:00');
@@ -1329,14 +1270,12 @@ function App() {
         setAuthToken(null);
         localStorage.removeItem('trimax_token');
         setSelectedFile(null);
-        setFileStats(null);
         setResults(null);
         setTrainingProgress(null);
     };
 
-    const handleFileSelect = (file, stats = null) => {
+    const handleFileSelect = (file) => {
         setSelectedFile(file);
-        setFileStats(stats);
         setResults(null);
         setTrainingProgress(null);
     };
@@ -1444,7 +1383,6 @@ function App() {
                 <UploadSection 
                     onFileSelect={handleFileSelect}
                     selectedFile={selectedFile}
-                    fileStats={fileStats}
                 />
                 <ProgressSection 
                     progress={trainingProgress}
