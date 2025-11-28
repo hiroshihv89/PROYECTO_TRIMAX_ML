@@ -1,11 +1,11 @@
-﻿from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks, Header
+﻿from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks
 from fastapi.responses import JSONResponse, FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import os
 import uuid
 import logging
-from typing import Optional, Dict, Any
+from typing import Dict, Any
 from model.trainer import train_model_retrasos
 import uvicorn
 from datetime import datetime
@@ -149,7 +149,7 @@ async def root():
     if os.path.exists(frontend_file):
         with open(frontend_file, "r", encoding="utf-8") as f:
             content = f.read()
-            # Reemplazar rutas de imágenes para Railway
+            # Reemplazar rutas de imágenes para deployment
             content = content.replace('src="img/', 'src="/img/')
             return content
     return HTMLResponse("""
@@ -375,7 +375,7 @@ if __name__ == "__main__":
     import sys
     
     try:
-        # Obtener puerto de variable de entorno (Railway) o usar 8000 por defecto
+        # Obtener puerto de variable de entorno o usar 8000 por defecto
         port = int(os.environ.get("PORT", 8000))
         
         # Detectar si estamos en un ejecutable de PyInstaller
@@ -398,8 +398,8 @@ if __name__ == "__main__":
         print("=" * 50)
         print()
         
-        # Solo abrir navegador si estamos en local (no en Railway)
-        if port == 8000 and not os.environ.get("RAILWAY_ENVIRONMENT"):
+        # Solo abrir navegador si estamos en local
+        if port == 8000 and not os.environ.get("RENDER"):
             def abrir_navegador():
                 import time
                 time.sleep(3)
@@ -414,7 +414,7 @@ if __name__ == "__main__":
             threading.Thread(target=abrir_navegador, daemon=True).start()
             print("Presiona Ctrl+C para detener el servidor")
         else:
-            print("Servidor listo en Railway")
+            print("Servidor listo")
         
         print()
         
@@ -425,5 +425,5 @@ if __name__ == "__main__":
         print(f"ERROR: {e}")
         import traceback
         traceback.print_exc()
-        if not os.environ.get("RAILWAY_ENVIRONMENT"):
+        if not os.environ.get("RENDER"):
             input("Presiona Enter para salir...")

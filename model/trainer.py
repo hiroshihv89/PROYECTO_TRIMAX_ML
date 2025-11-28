@@ -79,8 +79,6 @@
         # Calcular la variable objetivo (retraso) desde las fechas
         if 'FECHA_INICIO' in df.columns and 'FECHA_TERMINO' in df.columns:
             print("Calculando retraso desde FECHA_INICIO y FECHA_TERMINO...")
-            df['FECHA_INICIO'] = pd.to_datetime(df['FECHA_INICIO'], errors='coerce')
-            df['FECHA_TERMINO'] = pd.to_datetime(df['FECHA_TERMINO'], errors='coerce')
             
             # Calcular cuantas horas tardo cada orden
             df['tiempo_proceso_horas'] = (df['FECHA_TERMINO'] - df['FECHA_INICIO']).dt.total_seconds() / 3600
@@ -151,8 +149,71 @@
         
         # Agregar predicciones al dataset y guardarlo
         df['prediccion'] = model.predict(X)
-        df['probabilidad_retraso'] = model.predict_proba(X)[:, 1]
-        df.to_excel(os.path.join(results_folder, "dataset_predicciones.xlsx"), index=False)
+        
+        # Calcular probabilidad de retraso (manejar caso de una sola clase)
+        probas = model.predict_proba(X)
+        if probas.shape[1] == 2:
+            df['probabilidad_retraso'] = probas[:, 1]
+        else:
+            df['probabilidad_retraso'] = probas[:, 0]
+            print("Advertencia: Solo se detecto una clase en el modelo")
+        
+        # Agregar columna nivel_riesgo con 3 niveles
+        def asignar_riesgo(prob):
+            if prob < 0.4:
+                return "Bajo"
+            elif prob < 0.7:
+                return "Medio"
+            else:
+                return "Alto"
+        
+        df['nivel_riesgo'] = df['probabilidad_retraso'].apply(asignar_riesgo)
+        
+        # Guardar Excel con colores
+        excel_path = os.path.join(results_folder, "dataset_predicciones.xlsx")
+        
+        try:
+            from openpyxl import load_workbook
+            from openpyxl.styles import PatternFill
+            
+            # Guardar primero el Excel
+            df.to_excel(excel_path, index=False, engine='openpyxl')
+            
+            # Aplicar colores a la columna nivel_riesgo
+            wb = load_workbook(excel_path)
+            ws = wb.active
+            
+            # Encontrar la columna nivel_riesgo
+            riesgo_col = None
+            for col in range(1, ws.max_column + 1):
+                if ws.cell(row=1, column=col).value == 'nivel_riesgo':
+                    riesgo_col = col
+                    break
+            
+            if riesgo_col:
+                # Colores de fondo en columna nivel_riesgo
+                verde = PatternFill(start_color='90EE90', end_color='90EE90', fill_type='solid')
+                amarillo = PatternFill(start_color='FFD700', end_color='FFD700', fill_type='solid')
+                rojo = PatternFill(start_color='FF6B6B', end_color='FF6B6B', fill_type='solid')
+                
+                # Aplicar colores según el valor
+                for row in range(2, ws.max_row + 1):
+                    cell = ws.cell(row=row, column=riesgo_col)
+                    if cell.value == 'Bajo':
+                        cell.fill = verde
+                    elif cell.value == 'Medio':
+                        cell.fill = amarillo
+                    elif cell.value == 'Alto':
+                        cell.fill = rojo
+                
+                wb.save(excel_path)
+                print(f"Excel guardado con colores en nivel_riesgo: {excel_path}")
+            else:
+                print("Advertencia: No se encontro la columna nivel_riesgo para aplicar colores")
+        except Exception as e:
+            print(f"Error aplicando colores al Excel: {str(e)}")
+            # Si falla, guardar sin colores
+            df.to_excel(excel_path, index=False)
 
         # Graficos mejorados
         plt.style.use('default')

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TRIMAX AI - Sistema Predictivo de Retrasos</title>
+<title>TRIMAX AI - Sistema Predictivo de Retrasos (Ngrok)</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
     :root {
@@ -28,8 +28,8 @@
         padding: 0;
         box-sizing: border-box;
     }
-    
-    body { 
+
+    body {
         font-family: 'Rajdhani', sans-serif;
         background: var(--bg-primary);
         color: var(--text-primary);
@@ -68,13 +68,13 @@
         0% { transform: translate(0, 0); }
         100% { transform: translate(50px, 50px); }
     }
-    
-    .container { 
+
+    .container {
         max-width: 1400px;
         margin: 0 auto;
-        padding: 30px; 
+        padding: 30px;
     }
-    
+
     .header {
         text-align: center;
         padding: 40px 0;
@@ -131,7 +131,7 @@
         position: fixed;
         top: 20px;
         right: 20px;
-        padding: 12px 24px; 
+        padding: 12px 24px;
         border-radius: 50px;
         font-family: 'Space Grotesk', sans-serif;
         font-weight: 600;
@@ -173,7 +173,7 @@
         0%, 100% { opacity: 1; }
         50% { opacity: 0.4; }
     }
-    
+
     .card {
         background: var(--bg-card);
         border: 1px solid var(--border-color);
@@ -273,7 +273,7 @@
         font-weight: 600;
         color: var(--accent-cyan);
     }
-    
+
     .file-info {
         display: flex;
         align-items: center;
@@ -610,57 +610,6 @@
         color: var(--accent-orange);
     }
 
-    .stats-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 20px;
-        margin-top: 15px;
-        backdrop-filter: blur(10px);
-    }
-
-    .stats-title {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 18px;
-        color: var(--accent-cyan);
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 15px;
-    }
-
-    .stat-item {
-        background: rgba(0, 245, 255, 0.05);
-        border-left: 3px solid var(--accent-cyan);
-        padding: 12px;
-        border-radius: 6px;
-    }
-
-    .stat-label {
-        font-size: 12px;
-        color: var(--text-secondary);
-        margin-bottom: 5px;
-    }
-
-    .stat-value {
-        font-size: 20px;
-        font-weight: 600;
-        color: var(--accent-cyan);
-        font-family: 'Orbitron', sans-serif;
-    }
-
-    .stat-columns {
-        margin-top: 10px;
-        font-size: 12px;
-        color: var(--text-secondary);
-    }
-
     .chart-container {
         position: relative;
         height: 300px;
@@ -782,9 +731,7 @@
 <script type="text/babel">
 const { useState, useEffect, useRef } = React;
 
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-    ? "http://localhost:8000" 
-    : window.location.origin;
+const API_URL = "https://e4e4b49cfbc1.ngrok-free.app";
 const POLL_INTERVAL = 2000;
 
 function translateFeatureName(name) {
@@ -816,12 +763,15 @@ function LoginModal({ onLogin }) {
         e.preventDefault();
         try {
             const response = await fetch(`${API_URL}/login?username=${username}&password=${password}`, {
-                method: 'POST'
+                method: 'POST',
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
             });
             if (response.ok) {
                 const data = await response.json();
                 onLogin(data.token);
-    } else {
+            } else {
                 setError('Credenciales incorrectas');
             }
         } catch (e) {
@@ -1059,42 +1009,42 @@ function ResultsSection({ results }) {
         if (chartMonthRef.current) {
             if (chartMonthInstance.current) chartMonthInstance.current.destroy();
             chartMonthInstance.current = new Chart(chartMonthRef.current, {
-            type: 'bar',
-            data: {
+                type: 'bar',
+                data: {
                     labels: monthLabels,
-                datasets: [{
+                    datasets: [{
                         label: 'Retrasos %',
                         data: Object.values(monthData),
                         backgroundColor: 'rgba(0, 245, 255, 0.6)',
                         borderColor: 'rgba(0, 245, 255, 1)',
                         borderWidth: 2,
                         borderRadius: 8
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
-                scales: {
+                    scales: {
                         y: { beginAtZero: true, grid: { color: 'rgba(0, 245, 255, 0.1)' } },
                         x: { grid: { display: false } }
+                    }
                 }
-            }
-        });
-    }
+            });
+        }
 
-    const features = results.top_features || {};
+        const features = results.top_features || {};
         const topFeatures = Object.entries(features).slice(0, 5);
-        
+
         if (chartFeaturesRef.current) {
             if (chartFeaturesInstance.current) chartFeaturesInstance.current.destroy();
             chartFeaturesInstance.current = new Chart(chartFeaturesRef.current, {
-            type: 'doughnut',
-            data: {
+                type: 'doughnut',
+                data: {
                     labels: topFeatures.map(([n]) => translateFeatureName(n)),
-                datasets: [{
+                    datasets: [{
                         data: topFeatures.map(([, v]) => (v * 100).toFixed(2)),
-                    backgroundColor: [
+                        backgroundColor: [
                             'rgba(0, 245, 255, 0.8)',
                             'rgba(168, 85, 247, 0.8)',
                             'rgba(236, 72, 153, 0.8)',
@@ -1102,10 +1052,10 @@ function ResultsSection({ results }) {
                             'rgba(245, 158, 11, 0.8)'
                         ],
                         borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
@@ -1284,7 +1234,12 @@ function App() {
 
     const checkConnection = async () => {
         try {
-            const response = await fetch(`${API_URL}/health`, { method: 'GET' });
+            const response = await fetch(`${API_URL}/health`, { 
+                method: 'GET',
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
+            });
             setIsConnected(response.ok);
         } catch (e) {
             setIsConnected(false);
@@ -1299,7 +1254,12 @@ function App() {
     const handleLogout = async () => {
         if (authToken) {
             try {
-                await fetch(`${API_URL}/logout?token=${authToken}`, { method: 'POST' });
+                await fetch(`${API_URL}/logout?token=${authToken}`, { 
+                    method: 'POST',
+                    headers: {
+                        'ngrok-skip-browser-warning': 'true'
+                    }
+                });
             } catch (e) {
             }
         }
@@ -1333,7 +1293,11 @@ function App() {
 
         pollIntervalRef.current = setInterval(async () => {
             try {
-                const response = await fetch(`${API_URL}/train-status/${jobId}`);
+                const response = await fetch(`${API_URL}/train-status/${jobId}`, {
+                    headers: {
+                        'ngrok-skip-browser-warning': 'true'
+                    }
+                });
                 const job = await response.json();
 
                 switch(job.status) {
@@ -1397,7 +1361,10 @@ function App() {
         try {
             const response = await fetch(`${API_URL}/train-retrasos`, {
                 method: 'POST',
-                body: formData
+                body: formData,
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
             });
 
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -1445,3 +1412,4 @@ root.render(<App />);
 </script>
 </body>
 </html>
+
